@@ -1,0 +1,11 @@
+tensorflow==2.12
+pandas
+numpy
+matplotlib
+seaborn
+nltk
+wordcloud
+gensim
+scikit-learn
+plotly
+jupyterthemes
