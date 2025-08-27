@@ -3,6 +3,12 @@
 ##  Project Overview
 A deep learning solution to combat misinformation by classifying news articles as **Real** or **Fake** using advanced Natural Language Processing and Bidirectional LSTM neural networks.
 
+## Trained Model
+
+The trained model can be downloaded from [this Google Drive folder](https://drive.google.com/drive/folders/1RZs_mJD-qQvaRKQswSIMRpaIVqoEddJM).  
+Save the file `fake_news_model.h5` in the project folder before running the code.
+
+
 ## 🎯 Key Results
 - **Model Accuracy: 99.8%** on test data
 - Successfully processed **44,919 news articles**
@@ -92,6 +98,7 @@ nltk.download('stopwords')
 - **Epochs**: 2 (quick convergence due to effective architecture)
 - **Batch Size**: 64
 
+
 ## 🔍 Key Insights
 - **Balanced Dataset**: Equal distribution of real vs fake news ensures unbiased learning
 - **Text Length Optimization**: Padded sequences to 40 words for optimal performance
@@ -115,7 +122,6 @@ nltk.download('stopwords')
 ```
 fake-news-detection/
 ├── FAKENEWSDETECTIONMODELLSTM.ipynb  # Main notebook
-├── fake_news_model.h5                # Trained model
 ├── tokenizer.pkl                     # Fitted tokenizer
 ├── README.md                         # Project documentation
 └── requirements.txt                  # Dependencies
