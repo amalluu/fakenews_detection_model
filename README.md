@@ -1,26 +1,15 @@
-#  Fake News Detection using Bidirectional LSTM
+# Fake News Detection using Bidirectional LSTM
 
-##  Project Overview
-A deep learning solution to combat misinformation by classifying news articles as **Real** or **Fake** using advanced Natural Language Processing and Bidirectional LSTM neural networks.
-
-## Trained Model
-
-The trained model can be downloaded from [this Google Drive folder](https://drive.google.com/drive/folders/1RZs_mJD-qQvaRKQswSIMRpaIVqoEddJM).  
-Save the file `fake_news_model.h5` in the project folder before running the code.
-
-
-## 🎯 Key Results
-- **Model Accuracy: 99.8%** on test data
-- Successfully processed **44,919 news articles**
-- Balanced dataset with equal representation of real and fake news
-- Robust text preprocessing pipeline
+## Project Overview
+A deep learning project demonstrating text classification using Natural Language Processing and Bidirectional LSTM neural networks to classify news articles as **Real** or **Fake**.
 
 ## 🎯 Features
 - **Bidirectional LSTM Architecture**: Captures context from both directions in text
-- **Advanced Text Preprocessing**: Tokenization, stopword removal, padding
+- **Text Preprocessing Pipeline**: Tokenization, stopword removal, padding
 - **Word Embeddings**: 128-dimensional embedding layer for semantic understanding
 - **Data Visualization**: Word clouds and distribution analysis
-- **Model Persistence**: Saved trained model and tokenizer for deployment
+- **Streamlit Web App**: Interactive interface for testing the model
+- **Model Persistence**: Saved trained model and tokenizer
 
 ## 🎯 Tech Stack
 - **Python 3.x**
@@ -29,16 +18,19 @@ Save the file `fake_news_model.h5` in the project folder before running the code
 - **Pandas & NumPy** - Data manipulation
 - **Matplotlib & Seaborn** - Data visualization
 - **WordCloud** - Text visualization
-- **Gensim** - Text processing utilities
+- **Streamlit** - Web app framework
 
-## 📁 Dataset
-This project uses the **Fake and Real News Dataset** containing:
-- **True.csv**: Verified real news articles
-- **Fake.csv**: Confirmed fake news articles
+## 📁 Dataset & Model Files
+Download the required files from [this Google Drive folder](https://drive.google.com/drive/folders/1RZs_mJD-qQvaRKQswSIMRpaIVqoEddJM):
+
+**Required Files:**
+- `Fake.csv` - Fake news articles dataset
+- `True.csv` - Real news articles dataset  
+- `fake_news_model.keras` - Pre-trained model file
 
 **Dataset Source**: [Kaggle - Fake and Real News Dataset](https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset)
 
-*Note: Due to size limitations, datasets are not included in this repository. Please download from the Kaggle link above.*
+*Note: Due to GitHub file size limitations, datasets and model files are hosted on Google Drive.*
 
 ## 🎯 Model Architecture
 ```
@@ -57,7 +49,12 @@ Loss: Binary Crossentropy
 
 ### Prerequisites
 ```bash
-pip install tensorflow pandas numpy matplotlib seaborn nltk wordcloud gensim scikit-learn plotly
+pip install -r requirements.txt
+```
+
+Or install manually:
+```bash
+pip install tensorflow pandas numpy matplotlib seaborn nltk wordcloud streamlit scikit-learn plotly
 ```
 
 ### Download NLTK Data
@@ -67,72 +64,90 @@ nltk.download('punkt')
 nltk.download('stopwords')
 ```
 
-### Usage
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/amalluu/fakenews_detection_model
-   ```
+## 🚀 Usage
 
-2. **Download the dataset** from Kaggle link above and place CSV files in project directory
+### 1. Clone the Repository
+```bash
+git clone https://github.com/amalluu/fakenews_detection_model
+cd fakenews_detection_model
+```
 
-3. **Run the notebook**
-   ```bash
-   jupyter notebook FAKENEWSDETECTIONMODELLSTM.ipynb
-   ```
+### 2. Download Required Files
+Download `Fake.csv`, `True.csv`, and `fake_news_model.keras` from the Google Drive link above and place them in the project directory.
 
-4. **For predictions** (after training):
-   ```python
-   # Load saved model and tokenizer
-   from tensorflow.keras.models import load_model
-   import pickle
-   
-   model = load_model('fake_news_model.h5')
-   with open('tokenizer.pkl', 'rb') as f:
-       tokenizer = pickle.load(f)
-   ```
+### 3. Run the Jupyter Notebook
+```bash
+jupyter notebook FAKENEWSDETECTIONMODELLSTM.ipynb
+```
+
+### 4. Run the Streamlit App
+```bash
+streamlit run app.py
+```
+
+### 5. For Custom Predictions
+```python
+from tensorflow.keras.models import load_model
+import pickle
+
+# Load saved model and tokenizer
+model = load_model('fake_news_model.keras')
+with open('tokenizer_new.pkl', 'rb') as f:
+    tokenizer = pickle.load(f)
+```
 
 ## 📈 Model Performance
-- **Training Accuracy**: 99.8%
+- **Training Performance**: 99.8 on the specific training dataset
 - **Validation Split**: 10% of training data
-- **Test Accuracy**: 99.8%
-- **Epochs**: 2 (quick convergence due to effective architecture)
+- **Epochs**: 2 (quick convergence)
 - **Batch Size**: 64
 
+**Important Limitations:**
+- Model is trained on a specific dataset and may not generalize to other news sources
+- Preprocessing is aggressive (removes words ≤ 3 characters)
+- Uses only first 40 words of articles
+- Designed for educational/demonstration purposes
 
-## 🔍 Key Insights
-- **Balanced Dataset**: Equal distribution of real vs fake news ensures unbiased learning
-- **Text Length Optimization**: Padded sequences to 40 words for optimal performance
-- **Effective Preprocessing**: Stopword removal and tokenization significantly improved accuracy
-- **Bidirectional Context**: LSTM captures both forward and backward context in news articles
-
-## 📊 Visualizations Included
-- Distribution of news by subject categories
-- Word clouds for real vs fake news
-- Text length distribution analysis
-- Confusion matrix for model evaluation
-
-## 🚀 Future Improvements
-- [] Real-time news article classification API
-- [] Web interface for user input
-- [] Multi-language support
-- [] Integration with news feeds
-- [] Advanced attention mechanisms
+## 📊 What's Included
+- **Data Analysis**: Distribution of news by categories
+- **Visualizations**: Word clouds for real vs fake news
+- **Text Processing**: Length distribution analysis
+- **Model Training**: Complete LSTM implementation
+- **Web Interface**: Streamlit app for testing
 
 ## 📝 Project Structure
 ```
-fake-news-detection/
-├── FAKENEWSDETECTIONMODELLSTM.ipynb  # Main notebook
-├── tokenizer.pkl                     # Fitted tokenizer
-├── README.md                         # Project documentation
-└── requirements.txt                  # Dependencies
+fakenews_detection_model/
+├── FAKENEWSDETECTIONMODELLSTM copy.ipynb  # Main training notebook
+├── app.py                                 # Streamlit web app
+├── tokenizer_new.pkl                      # Fitted tokenizer
+├── maxlen_new.pkl                         # Sequence length parameter
+├── model_diagnostic.py                    # Model analysis tools
+├── check_maxlen.py                        # Utility script
+├── requirements.txt                       # Dependencies
+└── README.md                              # This file
 ```
 
-##  Contributing
-Feel free to fork this project and submit pull requests for improvements!
+## 🔍 Educational Value
+This project demonstrates:
+- Text preprocessing for NLP tasks
+- LSTM implementation for sequence classification
+- Data visualization techniques
+- Model evaluation and persistence
+- Building interactive ML applications
+
+**⚠️ Important Note**: This model is designed for educational purposes and works specifically with the dataset used for training. It is not intended for real-world fake news detection applications.
+
+## 🛠️ Future Learning Opportunities
+- Experiment with different preprocessing techniques
+- Try other neural network architectures (GRU, Transformer)
+- Implement attention mechanisms
+- Work with larger, more diverse datasets
+- Build more robust evaluation metrics
 
 ## 📧 Contact
-**Name** - amalukuruvilla9496@gmail.com
-**GitHub** - amalluu
+**Amalu Kuruvilla** - amalukuruvilla9496@gmail.com  
+**GitHub** - [amalluu](https://github.com/amalluu)
 
 ---
-⭐ **If you found this project helpful, please give it a star!**
+⭐ **If you found this educational project helpful, please give it a star!**
