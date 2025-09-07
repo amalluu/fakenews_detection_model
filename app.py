@@ -8,6 +8,10 @@ from keras.models import load_model
 from keras.preprocessing.sequence import pad_sequences
 from nltk.corpus import stopwords
 
+from huggingface_hub import hf_hub_download
+import tensorflow as tf
+import os
+
 # Download required NLTK data
 try:
     nltk.data.find('tokenizers/punkt')
@@ -36,11 +40,17 @@ if 'model_loaded' not in st.session_state:
 def load_model_and_tokenizer():
     """Load the trained model and tokenizer with exact training preprocessing"""
     try:
-        # Load model (try both .keras and .h5 formats)
-        try:
-            model = load_model('fake_news_model.keras')
-        except:
-            model = load_model('fake_news_model.h5')
+        # Download model from Hugging Face if not present locally
+        if not os.path.exists('fake_news_model.keras'):
+            model_path = hf_hub_download(
+                repo_id="amaluu/fakenewsdetection",
+                filename="fake_news_model.keras"
+            )
+        else:
+            model_path = 'fake_news_model.keras'
+
+        # Load model using the correct path
+        model = tf.keras.models.load_model(model_path)
         
         # Load tokenizer (updated filename)
         with open('tokenizer_new.pkl', 'rb') as f:
