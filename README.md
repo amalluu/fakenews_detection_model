@@ -4,21 +4,6 @@
 A deep learning project demonstrating text classification using Natural Language Processing and Bidirectional LSTM neural networks to classify news articles as **Real** or **Fake**.
 
 
-## 📸 Demo
-
-### Home Page
-![Home](screenshots/home.png)
-
-### Sidebar
-![Sidebar](screenshots/sidebar.png)
-
-### Fake News Sample
-![Fake News Sample](screenshots/fake_news%20sample.png)
-
-### Real News Sample
-![Real News Sample](screenshots/real_news%20sample.png)
-
-
 
 ## 🎯 Features
 - **Bidirectional LSTM Architecture**: Captures context from both directions in text
@@ -152,6 +137,22 @@ fakenews_detection_model/
 External (auto-downloaded):
 └── fake_news_model.keras                  # From Hugging Face Hub
 ```
+## 📸 Demo
+
+### Home Page
+![Home](screenshots/home.png)
+
+### Sidebar
+![Sidebar](screenshots/sidebar.png)
+
+### Fake News Sample
+![Fake News Sample](screenshots/fake_news_sample.png)
+
+### Real News Sample
+![Real News Sample](screenshots/real_news_sample.png)
+
+
+
 
 ## 🔍 Educational Value
 This project demonstrates:
